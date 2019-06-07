@@ -1550,20 +1550,24 @@ u64 snd_usb_interface_dsd_format_quirks(struct snd_usb_audio *chip,
 {
 	struct usb_interface *iface;
 
-	/* Playback Designs */
-	if (USB_ID_VENDOR(chip->usb_id) == 0x23ba) {
-		switch (fp->altsetting) {
-		case 1:
-			fp->dsd_dop = true;
-			return SNDRV_PCM_FMTBIT_DSD_U16_LE;
-		case 2:
-			fp->dsd_bitrev = true;
-			return SNDRV_PCM_FMTBIT_DSD_U8;
-		case 3:
-			fp->dsd_bitrev = true;
-			return SNDRV_PCM_FMTBIT_DSD_U16_LE;
-		}
-	}
+    /* Playback Designs */
+    if (le16_to_cpu(chip->dev->descriptor.idVendor) == 0x23ba) {
+        
+        if (product_id >= 0x0110 && product_id <= 0x011f && fp->altsetting == 2) {
+            return SNDRV_PCM_FMTBIT_DSD_U32_BE;
+        }
+        
+        if (product_id >= 0x0001 && product_id <= 0x0010 && fp->altsetting == 2) {
+            return SNDRV_PCM_FMTBIT_DSD_U16_LE;
+        }
+        
+        if (product_id >= 0x0001 && product_id <= 0x0010 && fp->altsetting == 3) {
+            return SNDRV_PCM_FMTBIT_DSD_U8;
+        }
+        
+        switch (fp->altsetting) {
+            case 1:
+                fp->dsd_dop = true;
 
 	/* XMOS based USB DACs */
 	switch (chip->usb_id) {
