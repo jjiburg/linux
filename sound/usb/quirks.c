@@ -1573,6 +1573,13 @@ u64 snd_usb_interface_dsd_format_quirks(struct snd_usb_audio *chip,
 	case USB_ID(0x22d9, 0x0461): /* OPPO UDP-205 */
 	case USB_ID(0x2522, 0x0012): /* LH Labs VI DAC Infinity */
 	case USB_ID(0x2772, 0x0230): /* Pro-Ject Pre Box S2 Digital */
+    case USB_ID(0x20b1, 0x2004): /* Matrix Audio X-SPDIF 2 */
+    case USB_ID(0x20b1, 0x2008): /* Matrix Audio X-Sabre */
+    case USB_ID(0x20b1, 0x300a): /* Matrix Audio Mini-i Pro */
+    case USB_ID(0x20b1, 0x3089): /* Mola-Mola DAC */
+    case USB_ID(0x22d9, 0x0416): /* OPPO HA-1 */
+    case USB_ID(0x22d9, 0x0436): /* OPPO Sonica */
+    case USB_ID(0x22d9, 0x0461): /* OPPO UDP-205 */
 		if (fp->altsetting == 2)
 			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
 		break;
@@ -1592,6 +1599,16 @@ u64 snd_usb_interface_dsd_format_quirks(struct snd_usb_audio *chip,
 	case USB_ID(0x27f7, 0x3002): /* W4S DAC-2v2SE */
 	case USB_ID(0x29a2, 0x0086): /* Mutec MC3+ USB */
 	case USB_ID(0x6b42, 0x0042): /* MSB Technology */
+    case USB_ID(0x152a, 0x85de): /* SMSL D1 DAC */
+    case USB_ID(0x152a, 0x85dd): /* SMSL M8A */
+    case USB_ID(0x16d0, 0x09dd): /* Encore mDSD */
+    case USB_ID(0x0d8c, 0x0316): /* Hegel HD12 DSD */
+    case USB_ID(0x152a, 0x8750): /* Topping DX7s */
+    case USB_ID(0x16b0, 0x06b2): /* NuPrime DAC-10 */
+    case USB_ID(0x16d0, 0x06b2): /* NuPrime DAC-10 */
+    case USB_ID(0x16d0, 0x0733): /* Furutech ADL Stratos */
+    case USB_ID(0x16d0, 0x09db): /* NuPrime Audio DAC-9 */
+    
 		if (fp->altsetting == 3)
 			return SNDRV_PCM_FMTBIT_DSD_U32_BE;
 		break;
